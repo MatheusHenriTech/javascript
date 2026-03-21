@@ -1,5 +1,6 @@
-let num1=10
-let num2=5
-let num3=10
+let n1=1
+let n2=2
 
-console.log(!(num1 != num3))
+console.log(!(n1!=n2))
+
+
