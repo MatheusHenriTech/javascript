@@ -1,21 +1,12 @@
-const btn_pesq=document.querySelector("#btn_pesq");
-const f_txtpesq=document.querySelector("#f_txtpesq");
 const dados=document.querySelector("#dados");
 
-btn_pesq.addEventListener("click", (evt)=>{
+const preencherdgv=()=>{
     dados.innerHTML="";
-    const valorpesq=f_txtpesq.value;
-    if(valorpesq==""){
-        alert("Digite a pesquisa");
-        f_txtpesq.focus();
-        return;
-    }
-    const f_pesq=document.querySelector("input[name=f_pesq]:checked").value;
-    const endpoint = `http://127.0.0.1:1880/pesquisarcontatos/${f_pesq}/${valorpesq}`;
+    const endpoint = `http://127.0.0.1:1880/pesquisartodoscontatos`;
     fetch(endpoint)
     .then(res=>res.json())
     .then(res=>{
-        dados.innerHTML=""; 
+        dados.innerHTML="";
         res.forEach((el)=>{
             const linha=document.createElement("div");
             linha.setAttribute("class", "linhadados")
@@ -45,8 +36,21 @@ btn_pesq.addEventListener("click", (evt)=>{
             c5.innerHTML=el.s_dtnasc_contato;
             linha.appendChild(c5);
 
+            const c6=document.createElement("div");
+            c6.setAttribute("class", "coluna c6 c_op")
+            const imgdelete=document.createElement("img");
+            imgdelete.setAttribute("src","delete.svg");
+            imgdelete.setAttribute("class","iconeop");
+            const imgeditar=document.createElement("img");
+            imgeditar.setAttribute("src","edit.svg");
+            imgeditar.setAttribute("class","iconeop");
+            c6.appendChild(imgdelete);
+            c6.appendChild(imgeditar);
+            linha.appendChild(c6);
+
             dados.appendChild(linha)
         })
     })
-})
+};
 
+preencherdgv();
