@@ -1,4 +1,18 @@
 const dados=document.querySelector("#dados");
+const fundpopup=document.querySelector("#fundopopup");
+const btn_gravar=document.querySelector("#btn_gravar");
+const btn_cancelar=document.querySelector("#btn_cancelar");
+const f_id=document.querySelector("#f_id");
+const f_nome=document.querySelector("#f_nome");
+const f_celular=document.querySelector("#f_celular");
+const f_email=document.querySelector("#f_email");
+
+btn_gravar.addEventListener("click",(evt)=>{
+    fundpopup.classList.add("ocultar");
+});
+btn_cancelar.addEventListener("click",(evt)=>{
+    fundpopup.classList.add("ocultar");
+});
 
 const preencherdgv=()=>{
     dados.innerHTML="";
@@ -42,13 +56,16 @@ const preencherdgv=()=>{
             imgdelete.setAttribute("src","delete.svg");
             imgdelete.setAttribute("class","iconeop");
             imgdelete.addEventListener("click",(evt)=>{
-                const id=evt.target.parentNode.parentNode.firstChild.innerHTML;
-                removerContato(id)
+                removerContato(evt.target.parentNode.parentNode.firstChild.innerHTML);
 
             });
             const imgeditar=document.createElement("img");
             imgeditar.setAttribute("src","edit.svg");
             imgeditar.setAttribute("class","iconeop");
+            imgeditar.addEventListener("click",(evt)=>{
+                fundpopup.classList.remove("ocultar");
+                const dados=evt.target.parentNode.parentNode.childNodes
+            });
             c6.appendChild(imgdelete);
             c6.appendChild(imgeditar);
             linha.appendChild(c6);
